@@ -23,13 +23,15 @@ const MenuSideBar = ({ session }) => {
           ></div>
 
           <div
-            className="bg-slate-300 p-5 fixed right-0 top-0 w-3/4 h-full shadow-lg transform transition-transform duration-300"
+            className={`bg-slate-300 p-5 fixed right-0 top-0 w-3/4 h-full shadow-lg transform transition-transform duration-[3000ms] ${
+              openSideBar ? "translate-x-0" : "translate-x-full"
+            }`}
             onClick={(e) => e.stopPropagation()} // Prevent clicks inside the sidebar from closing it
           >
             {session && (
               <>
                 <Image
-                  src={session?.user?.image }
+                  src={session?.user?.image}
                   width={30}
                   height={30}
                   alt="User profile picture"
@@ -42,12 +44,10 @@ const MenuSideBar = ({ session }) => {
               <Link href="/">
                 <p>Home</p>
               </Link>
-              <Link href='/about'>
+              <Link href="/about">
                 <p>About</p>
               </Link>
-              {session?<SignOut/>:<SignIn/> }
-              
-              
+              {session ? <SignOut /> : <SignIn />}
             </div>
           </div>
         </>
