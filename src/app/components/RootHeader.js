@@ -13,10 +13,9 @@ const Header = async () => {
       <div className="flex justify-between h-full max-w-6xl items-center mx-auto">
         <div>
           <Link href="/">
-            <Image
+            <img
               src={"/images/logo.png"}
-              width={150}
-              height={10}
+              className="w-32 md:w-52"
               alt="MyGojo logo"
             />
           </Link>
