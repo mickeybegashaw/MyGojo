@@ -5,6 +5,7 @@ import SearchForm from "./SearchForm";
 import SignIn from "./SignInButton";
 import { auth } from "../../../auth";
 import SignOut from "./SignOutButton";
+import MenuSideBar from "./MenuSideBar";
 
 const Header = async () => {
   const session = await auth();
@@ -24,27 +25,30 @@ const Header = async () => {
           <SearchForm />
         </div>
 
-        <div className="flex gap-5 text-slate-500 ">
+        <div className="flex gap-5 items-center text-slate-500 ">
           <Link href="/">
-            <span className="hidden md:inline">Home</span>
+            <span className="hidden md:inline hover:underline">Home</span>
           </Link>
           <Link href="/about">
-            <span className="hidden md:inline">About</span>
+            <span className="hidden md:inline hover:underline">About</span>
           </Link>
           {session ? (
             <>
-              <span className="hidden md:inline">
+              <span className="hidden md:inline hover:underline">
                 <SignOut />
               </span>
-              <span className="hidden md:inline">
+              <span className="hidden md:inline hover:underline">
                 <Image src={session?.user?.image} width={25} height={25} alt="user profile picture" className="rounded-full"/>
               </span>
             </>
           ) : (
-            <span className="hidden md:inline">
+            <span className="hidden md:inline hover:underline">
               <SignIn />
             </span>
           )}
+           <span className="inline md:hidden  hover:underline">
+              <MenuSideBar session={session}/>
+            </span>
         </div>
       </div>
     </header>

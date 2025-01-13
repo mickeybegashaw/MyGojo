@@ -1,13 +1,19 @@
-import { signOut } from "../../../auth";
-export default function SignOut() {
+"use client";
+import { signOutAction } from "../auth/serverAction"; 
+const SignOutButton = () => {
+  const handleSignOut = async () => {
+    try {
+      await signOutAction();  // Call the server action
+    } catch (error) {
+      console.error("Error signing in:", error);
+    }
+  };
+
   return (
-    <form
-      action={async () => {
-        "use server";
-        await signOut({redirectTo:'/'});
-      }}
-    >
-      <button type="submit">Sign out</button>
-    </form>
+    <button onClick={handleSignOut} className="bg-blue-500 text-white p-1 rounded">
+      Sign out
+    </button>
   );
-}
+};
+
+export default SignOutButton;
