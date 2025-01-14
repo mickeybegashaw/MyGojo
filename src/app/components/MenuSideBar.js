@@ -42,9 +42,9 @@ const MenuSideBar = ({ session }) => {
             )}
             <div className="flex flex-col gap-2 mt-2 ">
               <Link href="/">
-                <p>Home</p>
+                <p onClick={()=>setOpenSideBar(false)}>Home</p>
               </Link>
-              <Link href="/about">
+              <Link  onClick={()=>setOpenSideBar(false)} href="/about">
                 <p>About</p>
               </Link>
               {session ? <SignOut /> : <SignIn />}
