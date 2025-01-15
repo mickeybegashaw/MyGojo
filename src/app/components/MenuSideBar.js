@@ -18,12 +18,12 @@ const MenuSideBar = ({ session }) => {
       {openSideBar && (
         <>
           <div
+            className="fixed top-0 left-0 w-screen h-screen z-30 bg-black bg-opacity-50"
             onClick={() => setOpenSideBar(false)}
-            className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50"
           ></div>
 
           <div
-            className={`bg-slate-300 p-5 fixed right-0 top-0 w-3/4 h-full shadow-lg transform transition-transform duration-[3000ms] ${
+            className={`bg-slate-300 p-5 fixed right-0 top-0 w-3/4 h-full z-50 shadow-lg transform transition-transform duration-[3000ms] ${
               openSideBar ? "translate-x-0" : "translate-x-full"
             }`}
             onClick={(e) => e.stopPropagation()} // Prevent clicks inside the sidebar from closing it
@@ -47,7 +47,7 @@ const MenuSideBar = ({ session }) => {
               <Link  onClick={()=>setOpenSideBar(false)} href="/about">
                 <p>About</p>
               </Link>
-              {session ? <SignOut /> : <SignIn />}
+              {session ? <SignOut /> : <Link href={'account/login'}>Sign In</Link>  }
             </div>
           </div>
         </>

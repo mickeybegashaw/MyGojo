@@ -3,7 +3,7 @@ import Image from "next/image";
 const Home = () => {
   return (
     <div className="bg-slate-50 h-screen">
-      <div className=" mt-10 md:mt-24 max-w-6xl mx-auto">
+      <div className=" pt-10 md:pt-24 max-w-6xl mx-auto">
         <div className="w-9/12 md:w-6/12">
           <h1 className="text-3xl md:text-5xl font-bold text-slate-700 leading-10">
             Best place to find your next{" "}
