@@ -1,20 +1,23 @@
 import SignInButton from "@/app/components/SignInButton";
 import { auth } from "../../../../../auth";
 import { redirect } from "next/navigation";
+import Image from "next/image";
 const Login = async () => {
   const session =await  auth()
   if (session) {
     redirect('/')
   }
   return (
-    <div className="flex flex-col items-center">
-      <div className="w-5/6 md:w-4/6 h-96  shadow-lg mt-5 bg-white rounded-md">
-        <h1 className="text-xl md:text-2xl  text-slate-700 text-center">
+    <div className="flex items-center ">
+      <div className=" w-6/12 h-screen bg-white flex flex-col items-center">
+        <h1 className="text-xl  text-slate-700 text-center">
           Login to your Account
         </h1>
-        <div className="flex flex-col items-center">
           <SignInButton />
-        </div>
+      </div>
+      <div className="flex flex-col w-full items-center">
+        <h1 className="text-3xl   text-slate-500">Welcome back</h1>
+        <Image src={'/images/logo.png'} width={400} height={300} alt="logo of myGojo"/>
       </div>
     </div>
   );
