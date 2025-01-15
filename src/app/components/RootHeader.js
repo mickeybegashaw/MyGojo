@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import SearchForm from "./SearchForm";
-import SignIn from "./SignInButton";
 import { auth } from "../../../auth";
 import SignOut from "./SignOutButton";
 import MenuSideBar from "./MenuSideBar";
@@ -38,17 +37,23 @@ const Header = async () => {
                 <SignOut />
               </span>
               <span className="hidden md:inline hover:underline">
-                <Image src={session?.user?.image} width={25} height={25} alt="user profile picture" className="rounded-full"/>
+                <Image
+                  src={session?.user?.image}
+                  width={25}
+                  height={25}
+                  alt="user profile picture"
+                  className="rounded-full"
+                />
               </span>
             </>
           ) : (
             <span className="hidden md:inline hover:underline">
-              <SignIn />
+              <Link href="/login">Sign In</Link>
             </span>
           )}
-           <span className="inline md:hidden  hover:underline">
-              <MenuSideBar session={session}/>
-            </span>
+          <span className="inline md:hidden  hover:underline">
+            <MenuSideBar session={session} />
+          </span>
         </div>
       </div>
     </header>

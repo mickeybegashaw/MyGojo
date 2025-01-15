@@ -1,5 +1,7 @@
 "use client";
 import { signInAction } from "../auth/serverAction";
+import { FcGoogle } from "react-icons/fc";
+
 const SignInButton = () => {
   const handleSignIn = async () => {
     try {
@@ -10,8 +12,8 @@ const SignInButton = () => {
   };
 
   return (
-    <button onClick={handleSignIn} className="bg-blue-500 text-white p-1 rounded">
-      Sign In
+    <button onClick={handleSignIn} className=" p-3 border rounded">
+      <p> <span className="inline-block"> <FcGoogle size={20}/> </span> SignIn with Google </p>
     </button>
   );
 };
