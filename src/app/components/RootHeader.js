@@ -48,7 +48,7 @@ const Header = async () => {
             </>
           ) : (
             <span className="hidden md:inline hover:underline">
-              <Link href="/login">Sign In</Link>
+              <Link href="/account/login">Sign In</Link>
             </span>
           )}
           <span className="inline md:hidden  hover:underline">
