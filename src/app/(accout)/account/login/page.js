@@ -8,8 +8,8 @@ const Login = async () => {
     redirect('/')
   }
   return (
-    <div className="flex items-center ">
-      <div className=" w-6/12 h-screen bg-white flex flex-col items-center">
+    <div className="py-10 md:py-0 flex items-center flex-col-reverse md:flex-row ">
+      <div className=" w-11/12 h-96 md:w-6/12 md:h-screen bg-white flex flex-col justify-center items-center">
         <h1 className="text-xl  text-slate-700 text-center">
           Login to your Account
         </h1>
