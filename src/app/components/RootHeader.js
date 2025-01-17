@@ -9,7 +9,7 @@ import MenuSideBar from "./MenuSideBar";
 const Header = async () => {
   const session = await auth();
   return (
-    <header className="shadow-md  bg-slate-200 px-2 h-20">
+    <header className="shadow-md w-screen fixed bg-slate-200 px-2 h-20">
       <div className="flex justify-between h-full max-w-6xl items-center mx-auto">
         <div>
           <Link href="/">
