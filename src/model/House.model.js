@@ -36,7 +36,6 @@ const HouseSchema = new Schema(
     },
     images: {
       type: [String],  
-      required: true,
       default: [],
     },
   },

@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
+
 const ListingForm = () => {
-  const [formData, setFormdata] = useState({
+  const [formData, setFormData] = useState({
     name: "",
     description: "",
     address: "",
@@ -11,125 +12,162 @@ const ListingForm = () => {
     price: 0,
     image: [],
   });
-  const handelChange=(e)=>{
+
+  // Handle text, number, and textarea changes
+  const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormdata({ ...formData, [name]: value });
-  }
+    setFormData({ ...formData, [name]: value });
+  };
+
+  // Handle checkbox changes
+  const handleCheckboxChange = (e) => {
+    const { value, checked } = e.target;
+    if (checked) {
+      setFormData({ ...formData, type: [...formData.type, value] });
+    } else {
+      setFormData({
+        ...formData,
+        type: formData.type.filter((item) => item !== value),
+      });
+    }
+  };
+
+  // Handle file uploads
+  const handleFileChange = (e) => {
+    const files = Array.from(e.target.files);
+    setFormData({ ...formData, image: files });
+  };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+
+   
+    try {
+      const res = await fetch("/api/house", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        alert("House listed successfully!");
+      } else {
+        alert(data.error);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  };
+
   return (
-    <form className="flex flex-col flex-1 p-5 gap-5 ">
-      <div className="flex flex-col gap-10 flex-1">
-        <input
-          type="text"
-          placeholder="name"
-          className="md:p-2 border border-gray-400 rounded-lg"
-          id="name"
-          minLength="5"
-          maxLength="62"
-          required
-          onchange={handelChange}
-        />
-        <textarea
-          placeholder="Description"
-          id="description"
-          className="border md:p-2 rounded-lg resize-none border-gray-400  overflow-hidden h-40"
-          required
-          onchange={handelChange}
-        />
-        <input
-          type="text"
-          placeholder="Address"
-          className="md:p-2 border rounded-lg border-gray-400 "
-          id="address"
-          minLength="5"
-          maxLength="62"
-          required
-          onchange={handelChange}
-        />
-      </div>
-      <div className=" flex flex-col gap-2 justify-between ">
-        <div>
-          <input
-            type="checkbox"
-            id="rent"
-            className="w-5 border-gray-400 "
-            onchange={handelChange}
-          />
-          <span>Rent</span>
-        </div>
-        <div>
-          <input
-            type="checkbox"
-            id="sell"
-            onchange={handelChange}
-            className="w-5 border-gray-400 "
-          />
-          <span>Sell</span>
-        </div>
-        <div>
-          <input
-            type="checkbox"
-            id="parking"
-            onchange={handelChange}
-            className="w-5 border-gray-400 "
-          />
-          <span>Parking spot</span>
-        </div>
-        <div>
-          <input
-            type="checkbox"
-            id="furnished"
-            onchange={handelChange}
-            className="w-5 border-gray-400 "
-          />
-          <span>Furnished</span>
-        </div>
+    <form
+      onSubmit={handleFormSubmit}
+      className="flex flex-col flex-1 p-5 gap-5"
+    >
+      <input
+        type="text"
+        placeholder="Name"
+        name="name"
+        className="md:p-2 border border-gray-400 rounded-lg"
+        minLength="5"
+        maxLength="62"
+        required
+        value={formData.name}
+        onChange={handleChange}
+      />
+
+      <textarea
+        placeholder="Description"
+        name="description"
+        className="border md:p-2 rounded-lg resize-none border-gray-400 overflow-hidden h-40"
+        required
+        value={formData.description}
+        onChange={handleChange}
+      />
+
+      <input
+        type="text"
+        placeholder="Address"
+        name="address"
+        className="md:p-2 border rounded-lg border-gray-400"
+        minLength="5"
+        maxLength="62"
+        required
+        value={formData.address}
+        onChange={handleChange}
+      />
+
+      {/* Checkbox Section */}
+      <div className="flex flex-col gap-2">
+        {["Rent", "Sell", "Parking spot", "Furnished"].map((option) => (
+          <label key={option} className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              value={option}
+              onChange={handleCheckboxChange}
+              checked={formData.type.includes(option)}
+              className="w-5 h-5"
+            />
+            {option}
+          </label>
+        ))}
       </div>
 
-      <div className="flex flex-col gap-6 ">
+      {/* Beds, Baths, and Price */}
+      <div className="flex flex-col gap-6">
         <div className="flex items-center gap-2">
           <input
             type="number"
-            id="bedroom"
-            className="md:p-2 border rounded-lg w-12 border-gray-400 "
+            name="beds"
+            className="md:p-2 border rounded-lg w-16 border-gray-400"
+            min="1"
             required
-            onchange={handelChange}
+            value={formData.beds}
+            onChange={handleChange}
           />
           <p>Beds</p>
         </div>
-        <div className="flex items-center gap-2 ">
+        <div className="flex items-center gap-2">
           <input
             type="number"
-            id="bathroom"
-            className="md:p-2 border rounded-lg w-12 border-gray-400 "
+            name="bath"
+            className="md:p-2 border rounded-lg w-16 border-gray-400"
+            min="1"
             required
-            onchange={handelChange}
-
+            value={formData.bath}
+            onChange={handleChange}
           />
           <p>Baths</p>
         </div>
         <div className="flex items-center gap-2">
           <input
             type="number"
-            id="price"
-            className="md:p-2 border rounded-lg w-24 border-gray-400 "
+            name="price"
+            className="md:p-2 border rounded-lg w-24 border-gray-400"
+            min="0"
             required
-            onchange={handelChange}
+            value={formData.price}
+            onChange={handleChange}
           />
           <p>Price</p>
         </div>
       </div>
-      <div className="flex gap-4">
-        <input
-          className="md:p-2 rounded border w-full border-gray-400 "
-          type="file"
-          id="image"
-          accept="image/*"
-          multiple
-          required
-          onchange={handelChange}
-        />
-      </div>
-      <button type="submit" className="p-2 text-white text-xl bg-slate-600 rounded-md hover:bg-slate-500 transition-all">
+
+      {/* File Upload */}
+      <input
+        type="file"
+        name="image"
+        accept="image/*"
+        multiple
+        onChange={handleFileChange}
+        className="md:p-2 rounded border w-full border-gray-400"
+      />
+
+      <button
+        type="submit"
+        className="p-2 text-white text-xl bg-slate-600 rounded-md hover:bg-slate-500 transition-all"
+      >
         Submit
       </button>
     </form>
