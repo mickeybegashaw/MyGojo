@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "auth": "^1.2.3",
+    "mongoose": "^8.9.5",
     "next": "15.1.4",
     "next-auth": "^5.0.0-beta.25",
     "npx": "^10.2.2",
