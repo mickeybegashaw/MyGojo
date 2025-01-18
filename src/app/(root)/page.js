@@ -36,9 +36,9 @@ const Home = async () => {
       <div className="relative w-full h-96 mt-28 md:mt-32">
         <Image
           src={"/images/hero.png"}
-          layout="fill"
-          objectFit="cover"
+          fill
           priority
+          className="object-cover"
           alt="hero image"
         />
       </div>
