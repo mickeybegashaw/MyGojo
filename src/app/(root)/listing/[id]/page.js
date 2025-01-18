@@ -50,16 +50,22 @@ const Listing = async ({ params }) => {
           <strong>Description :</strong> {data.description}
         </p>
         <ul className="text-slate-500 mt-4 flex flex-wrap gap-5 md:gap-10">
-<li  className='flex items-center gap-1 whitespace-nowrap '>
-  <FaBed/>
-  {data.beds > 1 ? `${data.beds} Beds` : `${data.beds} Bed`}
-  </li>
-<li  className='flex items-center gap-1 whitespace-nowrap '>
-  <FaBath/>
-  {data.bath > 1 ? `${data.beds} Baths` : `${data.beds} Bath`}
-  </li>
-  <li  className='flex items-center gap-1 whitespace-nowrap '><FaParking/>{data.type.includes("parking spot")?"Parking":"No parking"}</li>
-  <li  className='flex items-center gap-1 whitespace-nowrap '><FaChair/>{data.type.includes("Furnished")?"Furnished":"Not Furnished"}</li>
+          <li className="flex items-center gap-1 whitespace-nowrap ">
+            <FaBed />
+            {data.beds > 1 ? `${data.beds} Beds` : `${data.beds} Bed`}
+          </li>
+          <li className="flex items-center gap-1 whitespace-nowrap ">
+            <FaBath />
+            {data.bath > 1 ? `${data.beds} Baths` : `${data.beds} Bath`}
+          </li>
+          <li className="flex items-center gap-1 whitespace-nowrap ">
+            <FaParking />
+            {data.type.includes("parking spot") ? "Parking" : "No parking"}
+          </li>
+          <li className="flex items-center gap-1 whitespace-nowrap ">
+            <FaChair />
+            {data.type.includes("Furnished") ? "Furnished" : "Not Furnished"}
+          </li>
         </ul>
       </div>
     </div>
