@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { FaLocationDot } from "react-icons/fa6";
 
 const Home = async () => {
   let data = [];
@@ -64,9 +65,17 @@ const Home = async () => {
                   )}
                   <div className="flex flex-col gap-2 mt-5">
                     <h2 className="text-lg font-semibold text-slate-600 mt-2">
-                      {house.name}
+                      {house.name}{" "}
+                      <span className="text-slate-300 text-sm">
+                        ({house.type.includes("rent") ? "Rent" : "Sell"}){" "}
+                      </span>
                     </h2>
-                    <p className="text-slate-400 text-sm">{house.address}</p>
+                    <p className="text-slate-400 text-sm">
+                      <span className="inline-block">
+                        <FaLocationDot />{" "}
+                      </span>{" "}
+                      {house.address}
+                    </p>
                     <p className="text-slate-400 text-sm line-clamp-2">
                       {house.description}
                     </p>
@@ -75,9 +84,8 @@ const Home = async () => {
                     </p>
                   </div>
                   <div className="flex gap-4 mt-6  ">
-                  <p className="text-slate-400 text-sm">{house.beds} Beds</p>
-                  <p className="text-slate-400 text-sm">{house.bath} Baths</p>
-
+                    <p className="text-slate-400 text-sm">{house.beds} Beds</p>
+                    <p className="text-slate-400 text-sm">{house.bath} Baths</p>
                   </div>
                 </div>
               </Link>

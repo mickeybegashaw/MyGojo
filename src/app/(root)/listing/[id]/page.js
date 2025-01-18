@@ -1,3 +1,5 @@
+import { FaLocationDot } from "react-icons/fa6";
+
 const Listing = async ({ params }) => {
   let data;
   const { id } = await params;
