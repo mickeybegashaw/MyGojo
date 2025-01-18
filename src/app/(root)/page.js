@@ -5,7 +5,7 @@ const Home = async () => {
   let data = [];
 
   try {
-    const result = await fetch("http://localhost:3000/api/house/get", {
+    const result = await fetch(process.env.URL+"/api/house/get", {
       method: "GET",
       cache: "no-store",
     });
