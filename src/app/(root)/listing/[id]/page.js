@@ -1,8 +1,8 @@
 const Listing = async ({ params }) => {
   let data;
-
+  const { id } = await params;
   try {
-    const res = await fetch(process.env.URL+`/api/house/${params.id}`, {
+    const res = await fetch(process.env.URL + `/api/house/${id}`, {
       method: "GET",
       cache: "no-store",
     });
