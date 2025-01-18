@@ -1,5 +1,11 @@
 import ListingForm from "@/app/components/listing-form";
-const CreateListing = () => {
+import { auth } from "../../../../auth";
+import { redirect } from "next/navigation";
+const CreateListing =async () => {
+  const session = await auth()
+  if (!session) {
+    redirect('/account/login')
+  }
   return (
     <main className="p-3 bg-slate-50 flex flex-col w-screen items-center">
       <div className=" w-11/12 md:w-8/12">

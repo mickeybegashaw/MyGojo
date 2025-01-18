@@ -33,6 +33,11 @@ const Header = async () => {
           </Link>
           {session ? (
             <>
+              <Link href="/create-listing">
+                <span className="hidden md:inline hover:underline">
+                  Create-listing
+                </span>
+              </Link>
               <span className="hidden md:inline hover:underline">
                 <SignOut />
               </span>
