@@ -5,7 +5,7 @@ const Home = async () => {
   let data = [];
 
   try {
-    const result = await fetch(process.env.URL+"/api/house/get", {
+    const result = await fetch(process.env.URL + "/api/house/get", {
       method: "GET",
       cache: "no-store",
     });
@@ -27,15 +27,13 @@ const Home = async () => {
             Best place to find your next{" "}
             <span className="text-slate-400">perfect</span> place
           </h1>
-          <p className="text-slate-400 mt-2">
-            Your direct path to home sweet home.
-          </p>
+          <p className="text-slate-400 mt-2">Your direct path to home sweet home.</p>
         </div>
       </div>
 
       <div className="relative w-full h-96 mt-28 md:mt-32">
         <Image
-          src={"/images/hero.png"}
+          src="/images/hero.png"
           fill
           priority
           className="object-cover"
@@ -48,27 +46,26 @@ const Home = async () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           {data.length > 0 ? (
             data.map((house) => (
-                <Link href={`/listing/${house._id}`}>
-              <div key={house._id} className="p-4 h-full bg-white shadow-md rounded-md">
-                {house.images && house.images[0] ? (
-                  <img
-                    src={house.images[0]}
-                    alt="house image"
-                    
-                    className="rounded-md w-full h-3/6"
-                  />
-                ) : (
-                  <div className="rounded-md w-full h-3/6 bg-gray-200 flex items-center justify-center">
-                    No Image
-                  </div>
-                )}
-                <h2 className="text-lg font-semibold text-slate-700 mt-2">
-                  {house.name}
-                </h2>
-                <p className="text-slate-500">{house.description}</p>
-                <p className="text-slate-700 font-bold">${house.price}</p>
-              </div>
-                </Link>
+              <Link key={house._id} href={`/listing/${house._id}`}>
+                <div className="p-4 h-full bg-white shadow-md rounded-md">
+                  {house.images && house.images[0] ? (
+                    <Image
+                      src={house.images[0]}
+                      alt="house image"
+                      width={500} 
+                      height={300}
+                      className="rounded-md w-full h-3/6 object-cover"
+                    />
+                  ) : (
+                    <div className="rounded-md w-full h-3/6 bg-gray-200 flex items-center justify-center">
+                      No Image
+                    </div>
+                  )}
+                  <h2 className="text-lg font-semibold text-slate-700 mt-2">{house.name}</h2>
+                  <p className="text-slate-500">{house.description}</p>
+                  <p className="text-slate-700 font-bold">${house.price}</p>
+                </div>
+              </Link>
             ))
           ) : (
             <p>No houses available.</p>
