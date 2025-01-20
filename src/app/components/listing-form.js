@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
-
+import { useRouter } from "next/router";
+import { redirect } from "next/navigation";
 const ListingForm = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -121,7 +122,22 @@ const ListingForm = () => {
 
       const data = await res.json();
       if (res.ok) {
+        setLoading(false);
+        setError("");
+        setFormData({
+          name: "",
+          description: "",
+          address: "",
+          type: [],
+          beds: 1,
+          bath: 1,
+          price: 0,
+          image: [],
+        });
         setSuccess("House listed successfully!");
+        setTimeout(() => {
+          redirect(`/listing/${data._id}`);
+        }, 100);
       } else {
         setError(data.error);
       }

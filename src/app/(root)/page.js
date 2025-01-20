@@ -16,7 +16,6 @@ const Home = async () => {
     }
 
     data = await result.json();
-    console.log(data)
   } catch (error) {
     console.error("Error fetching data:", error);
   }
