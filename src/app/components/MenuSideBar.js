@@ -47,7 +47,10 @@ const MenuSideBar = ({ session }) => {
               <Link  onClick={()=>setOpenSideBar(false)} href="/about">
                 <p>About</p>
               </Link>
-              {session ? <SignOut /> : <Link href={'account/login'}>Sign In</Link>  }
+             { session&&<Link  onClick={()=>setOpenSideBar(false)} href="/create-listing">
+                <p>Create listing</p>
+              </Link>}
+              {session ? <SignOut /> : <Link href={'/account/login'}>Sign In</Link>  }
             </div>
           </div>
         </>
