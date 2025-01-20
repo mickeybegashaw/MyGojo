@@ -239,7 +239,6 @@ const ListingForm = () => {
       {success && <p className="text-green-500">{success}</p>}
       {error && <p className="text-red-500">{error}</p>}
       <button
-      disabled={loading}
         type="submit"
         className="p-2 text-white text-xl bg-slate-600 rounded-md hover:bg-slate-500 transition-all"
       >

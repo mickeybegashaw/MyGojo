@@ -34,16 +34,10 @@ const HouseSchema = new Schema(
       type: Number,
       required: true,
     },
-    images: {
-      id:{
-        type:String,
-        required:true
-      },
-      url:{
-        type:String,
-        required:true
-      }
-    },
+    images: [{
+      url: { type: String, required: true },
+      id: { type: String, required: true }
+    }]
   },
   { timestamps: true }
 );
