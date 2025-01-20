@@ -2,30 +2,35 @@ import connect from "@/lib/db";
 import House from "@/model/House.model";
 import { NextResponse } from "next/server";
 
-// Handle POST request to create a new house
 export const POST = async (request) => {
   try {
-    const { name, description, address, type, beds, bath, price, image } =
-      await request.json();
     await connect();
+    const { name, address, description, type, beds, bath, price, images } = await request.json();
 
-    const newHouse = await House.create({
+    // Validate if all required fields are provided
+    if (!name || !address || !description || !type || !beds || !bath || !price || !image) {
+      return NextResponse.json({ error: "All fields are required" }, { status: 400 });
+    }
+
+    // Create the new house listing
+    const createdHouse = await House.create({
       name,
-      description,
       address,
+      description,
       type,
       beds,
       bath,
       price,
-      image,
+      images,
     });
 
-    return NextResponse.json(newHouse, { status: 201 }); // ✅ Correct response with 201 status
+    // Return the created house with a success status
+    return NextResponse.json(createdHouse, { status: 201 });
+
   } catch (error) {
-    console.error("Error creating house:", error);
-    return NextResponse.json(
-      { error: "An error occurred while creating the house." },
-      { status: 500 }
-    ); // ✅ Clear error message
+    console.error(error);
+    return NextResponse.json({
+      error: "An error occurred while creating the listing",
+    }, { status: 500 });
   }
 };
