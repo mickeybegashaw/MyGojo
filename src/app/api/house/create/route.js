@@ -8,7 +8,7 @@ export const POST = async (request) => {
     const { name, address, description, type, beds, bath, price, images } = await request.json();
 
     // Validate if all required fields are provided
-    if (!name || !address || !description || !type || !beds || !bath || !price || !image) {
+    if (!name || !address || !description || !type || !beds || !bath || !price || !images) {
       return NextResponse.json({ error: "All fields are required" }, { status: 400 });
     }
 
