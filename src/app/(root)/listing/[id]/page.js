@@ -28,7 +28,7 @@ const Listing = async ({ params }) => {
 
   return (
     <div>
-      <ImageSlider swipeImg={data.images} />
+      <ImageSlider swipeImg={data.images.map(image=>image.url)} />
       <div className="p-5 max-w-4xl mt-10 mx-auto">
         <h1 className="mb-3 text-2xl font-semibold">
           {data.name}-{" "}

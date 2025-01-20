@@ -16,6 +16,7 @@ const Home = async () => {
     }
 
     data = await result.json();
+    console.log(data)
   } catch (error) {
     console.error("Error fetching data:", error);
   }
@@ -50,9 +51,9 @@ const Home = async () => {
             data.map((house) => (
               <Link key={house._id} href={`/listing/${house._id}`}>
                 <div className="px-3 flex flex-col  h-full bg-white shadow-md rounded-md">
-                  {house.images && house.images[0] ? (
+                  {house.images && house.images[0].url ? (
                     <Image
-                      src={house.images[0]}
+                      src={house.images[0].url}
                       alt="house image"
                       width={500}
                       height={300}
