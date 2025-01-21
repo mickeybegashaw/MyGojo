@@ -10,7 +10,7 @@ const SignOutButton = () => {
   };
 
   return (
-    <button onClick={handleSignOut} className="bg-blue-500 text-white p-1 rounded">
+    <button onClick={handleSignOut} className="bg-red-500 text-white p-3 w-full rounded">
       Sign out
     </button>
   );

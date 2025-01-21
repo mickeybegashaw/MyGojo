@@ -32,25 +32,20 @@ const Header = async () => {
             <span className="hidden md:inline hover:underline">About</span>
           </Link>
           {session ? (
-            <>
-              <Link href="/create-listing">
-                <span className="hidden md:inline hover:underline">
-                  Create-listing
-                </span>
-              </Link>
-              <span className="hidden md:inline hover:underline">
-                <SignOut />
-              </span>
+         
+              <Link href='/account/profile'>
               <span className="hidden md:inline hover:underline">
                 <Image
                   src={session?.user?.image}
-                  width={25}
-                  height={25}
+                  width={30}
+                  height={30}
                   alt="user profile picture"
                   className="rounded-full"
                 />
               </span>
-            </>
+              </Link>
+              
+          
           ) : (
             <span className="hidden md:inline hover:underline">
               <Link href="/account/login">Sign In</Link>
