@@ -12,7 +12,7 @@ const CreateListing =async () => {
         <h1 className="text-center text-2xl text-slate-500 md:text-3xl font-semibold my-3 md:my-7">
           Create a listing
         </h1>
-        <ListingForm />
+        <ListingForm session={session}/>
       </div>
     </main>
   );

@@ -3,6 +3,9 @@ const Schema = mongoose.Schema;
 
 const HouseSchema = new Schema(
   {
+    posted_by:{
+      type:String
+    },
     name: {
       type: String,
       required: true,

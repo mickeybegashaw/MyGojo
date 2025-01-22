@@ -5,15 +5,16 @@ import { NextResponse } from "next/server";
 export const POST = async (request) => {
   try {
     await connect();
-    const { name, address, description, type, beds, bath, price, images } = await request.json();
+    const { name, address, description, type, beds, bath, price, images, posted_by } = await request.json();
 
     // Validate if all required fields are provided
-    if (!name || !address || !description || !type || !beds || !bath || !price || !images) {
+    if (!name || !address || !description || !type || !beds || !bath || !price || !images || !posted_by) {
       return NextResponse.json({ error: "All fields are required" }, { status: 400 });
     }
 
     // Create the new house listing
     const createdHouse = await House.create({
+      posted_by,
       name,
       address,
       description,

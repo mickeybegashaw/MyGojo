@@ -1,8 +1,7 @@
 "use client";
 import { useState } from "react";
-import { useRouter } from "next/router";
 import { redirect } from "next/navigation";
-const ListingForm = () => {
+const ListingForm = ({session}) => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
@@ -16,7 +15,6 @@ const ListingForm = () => {
     price: 0,
     image: [],
   });
-
   // Handle text, number, and textarea changes
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -112,6 +110,7 @@ const ListingForm = () => {
       beds,
       bath,
       images: uploadedImage,
+      posted_by: session.user.id
     };
     try {
       const res = await fetch("/api/house/create", {
