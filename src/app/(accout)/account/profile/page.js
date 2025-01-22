@@ -6,17 +6,18 @@ import { redirect } from "next/navigation";
 
 const Profile = async () => {
   const session = await auth();
+  console.log(session)
   if (!session) {
     redirect("/account/login");
   }
   return (
     <main className="bg-slate-300 flex flex-col items-center h-screen">
-      <div className=" w-full md:w-4/5  mt-20 flex flex-col gap-5 items-center">
+      <div className=" w-full md:w-3/6  mt-20 flex flex-col gap-9 items-center">
         <h1 className="text-3xl text-slate-700 font-bold">Profile</h1>
         <Image
           src={session.user.image}
-          width={50}
-          height={50}
+          width={80}
+          height={80}
           alt="user profile picture"
           className="rounded-full"
         />
