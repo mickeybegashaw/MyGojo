@@ -7,7 +7,10 @@ import {
   FaParking,
 } from "react-icons/fa";
 import ImageSlider from "@/app/components/imageSlider";
+import Image from "next/image";
+import { auth } from "../../../../../auth";
 const Listing = async ({ params }) => {
+  const session = await auth();
   let data;
   const { id } = await params;
   try {
@@ -28,7 +31,7 @@ const Listing = async ({ params }) => {
 
   return (
     <div>
-      <ImageSlider swipeImg={data.images.map(image=>image.url)} />
+      <ImageSlider swipeImg={data.images.map((image) => image.url)} />
       <div className="p-5 max-w-4xl mt-10 mx-auto">
         <h1 className="mb-3 text-2xl font-semibold">
           {data.name}-{" "}
@@ -67,6 +70,29 @@ const Listing = async ({ params }) => {
             {data.type.includes("Furnished") ? "Furnished" : "Not Furnished"}
           </li>
         </ul>
+        {data?.posted_by?.id != session.user.id && (
+          <div className="mt-16 bg-slate-300 w-full md:w-4/6 px-5 py-3 rounded-lg flex flex-col gap-2">
+            <h3 className="font-bold ">House Listed by:</h3>
+            <div className="flex justify-between">
+              <div className="flex gap-2">
+                <Image
+                  src={data?.posted_by?.image}
+                  width={30}
+                  height={30}
+                  alt="user profile picture"
+                  className="rounded-full"
+                />
+                <span className="text-slate-600">{data?.posted_by?.name} </span>
+              </div>
+              <a
+                href={`mailto:${data?.posted_by?.email}`}
+                className="underline text-slate-600"
+              >
+                Send Email
+              </a>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

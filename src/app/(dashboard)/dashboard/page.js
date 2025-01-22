@@ -23,7 +23,7 @@ const Dashboard = async() => {
 
 
   return (
-    <main className="bg-slate-300 flex flex-col items-center h-screen">
+    <main className="bg-slate-300 flex flex-col items-center h-full">
       <div className="mt-5 w-11/12">
         <h1 className="text-slate-700 text-3xl font-bold text-center ">Dashboard</h1>
         <div>
@@ -37,9 +37,9 @@ const Dashboard = async() => {
                     <Image
                       src={house.images[0].url}
                       alt="house image"
-                      width={500}
+                      width={400}
                       height={300}
-                      className="rounded-md transition-transform hover:scale-105 w-full h-2/6 object-cover"
+                      className="rounded-md transition-transform hover:scale-105 w-full h-1/2 object-contain"
                     />
                   ) : (
                     <div className="rounded-md w-full h-3/6 bg-gray-200 flex items-center justify-center">

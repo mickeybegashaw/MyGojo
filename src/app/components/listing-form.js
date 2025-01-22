@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { redirect } from "next/navigation";
-const ListingForm = ({session}) => {
+const ListingForm = ({ session }) => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
@@ -110,7 +110,12 @@ const ListingForm = ({session}) => {
       beds,
       bath,
       images: uploadedImage,
-      posted_by: session.user.id
+      posted_by: {
+        id: session.user.id,
+        email: session.user.email,
+        image: session.user.image,
+        name:session.user.name
+      },
     };
     try {
       const res = await fetch("/api/house/create", {

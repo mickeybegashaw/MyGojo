@@ -12,7 +12,7 @@ export const GET = async (req) => {
 
   try {
     await connect();
-    const houses = await House.find({ posted_by: user_id });
+    const houses = await House.find({ "posted_by.id": user_id });
 
     return NextResponse.json(houses, { status: 200 });
   } catch (error) {
