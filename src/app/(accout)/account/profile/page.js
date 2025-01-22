@@ -6,13 +6,13 @@ import { redirect } from "next/navigation";
 
 const Profile = async () => {
   const session = await auth();
-  console.log(session)
+  console.log(session);
   if (!session) {
     redirect("/account/login");
   }
   return (
     <main className="bg-slate-300 flex flex-col items-center h-screen">
-      <div className=" w-full md:w-3/6  mt-20 flex flex-col gap-9 items-center">
+      <div className=" w-full md:w-3/6  mt-20 flex flex-col gap-7 items-center">
         <h1 className="text-3xl text-slate-700 font-bold">Profile</h1>
         <Image
           src={session.user.image}
@@ -35,12 +35,16 @@ const Profile = async () => {
         />
         <div className="flex gap-5 w-4/5 md:w-3/5">
           <SignOutButton />
-          <Link href="/create-listing" className="bg-slate-500 text-white p-3 w-full rounded flex justify-center">
-          <button >
-           Create Listing
-          </button>
+          <Link
+            href="/create-listing"
+            className="bg-slate-500 text-white p-3 w-full rounded flex justify-center"
+          >
+            <button>Create Listing</button>
           </Link>
         </div>
+        <Link href="/dashboard">
+          <p className="underline text-slate-700">View my listings</p>
+        </Link>
       </div>
     </main>
   );
