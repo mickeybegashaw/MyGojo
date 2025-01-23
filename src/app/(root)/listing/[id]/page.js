@@ -70,7 +70,7 @@ const Listing = async ({ params }) => {
             {data.type.includes("Furnished") ? "Furnished" : "Not Furnished"}
           </li>
         </ul>
-        {data?.posted_by?.id != session.user.id && (
+        {data?.posted_by?.id != session?.user?.id && (
           <div className="mt-16 bg-slate-300 w-full md:w-4/6 px-5 py-3 rounded-lg flex flex-col gap-2">
             <h3 className="font-bold ">House Listed by:</h3>
             <div className="flex justify-between">
