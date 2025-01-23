@@ -42,15 +42,32 @@ const MenuSideBar = ({ session }) => {
             )}
             <div className="flex flex-col gap-2 mt-2 ">
               <Link href="/">
-                <p onClick={()=>setOpenSideBar(false)}>Home</p>
+                <p onClick={() => setOpenSideBar(false)}>Home</p>
               </Link>
-              <Link  onClick={()=>setOpenSideBar(false)} href="/about">
+              <Link onClick={() => setOpenSideBar(false)} href="/about">
                 <p>About</p>
               </Link>
-             { session&&<Link  onClick={()=>setOpenSideBar(false)} href="/create-listing">
-                <p>Create listing</p>
-              </Link>}
-              {session ? <SignOut /> : <Link href={'/account/login'}>Sign In</Link>  }
+              {session && (
+                <>
+                  <Link
+                    onClick={() => setOpenSideBar(false)}
+                    href="/create-listing"
+                  >
+                    <p>Create listing</p>
+                  </Link>
+                  <Link
+                    onClick={() => setOpenSideBar(false)}
+                    href="/dashboard"
+                  >
+                    <p>Dashboard</p>
+                  </Link>
+                </>
+              )}
+              {session ? (
+                <SignOut />
+              ) : (
+                <Link href={"/account/login"}>Sign In</Link>
+              )}
             </div>
           </div>
         </>
