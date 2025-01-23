@@ -31,7 +31,7 @@ const Dashboard = async() => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-5">
           {data.length > 0 ? (
             data.map((house) => (
-              <Link key={house._id} href={`/listing/${house._id}`}>
+              <Link key={house._id} href={`/dashboard/listing/${house._id}`}>
                 <div className="px-3 py-2 flex flex-col  h-fit bg-white shadow-md rounded-md">
                   {house.images && house.images[0].url ? (
                     <Image
