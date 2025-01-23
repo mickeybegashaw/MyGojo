@@ -23,7 +23,7 @@ const Dashboard = async() => {
 
 
   return (
-    <main className="bg-slate-300 flex flex-col items-center h-full">
+    <main className="bg-slate-300 flex flex-col items-center h-svh">
       <div className="mt-5 w-11/12">
         <h1 className="text-slate-700 text-3xl font-bold text-center ">Dashboard</h1>
         <div>

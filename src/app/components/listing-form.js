@@ -140,7 +140,7 @@ const ListingForm = ({ session }) => {
         });
         setSuccess("House listed successfully!");
         setTimeout(() => {
-          redirect(`/listing/${data._id}`);
+          redirect(`/dashboard/listing/${data._id}`);
         }, 100);
       } else {
         setError(data.error);

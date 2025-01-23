@@ -1,13 +1,9 @@
 import { FaLocationDot } from "react-icons/fa6";
-import {
-  FaBath,
-  FaBed,
-  FaChair,
-  FaMapMarkerAlt,
-  FaParking,
-} from "react-icons/fa";
+import { FaBath, FaBed, FaChair, FaParking } from "react-icons/fa";
 import Image from "next/image";
 import { auth } from "../../../../../../auth";
+import DeleteAndEditButton from "@/app/components/DeleteAndEditButton";
+import { redirect } from "next/navigation";
 const DashboardListing = async ({ params }) => {
   const session = await auth();
   let data;
@@ -23,18 +19,21 @@ const DashboardListing = async ({ params }) => {
     }
 
     data = await res.json();
+  
   } catch (error) {
     console.error(error);
     return <div>Failed to load data.</div>;
   }
 
+
   return (
     <div>
       <div className="p-5 max-w-4xl mt-10 mx-auto">
-      <div className="grid grid-cols-3 gap-5">
-
-      {data.images.map((image) => <Image src={image.url} width={300} height={400} alt="house image"/> )}
-      </div>
+        <div className="grid grid-cols-3 gap-5">
+          {data.images.map((image) => (
+            <Image src={image.url} width={300} height={400} alt="house image" />
+          ))}
+        </div>
         <h1 className="mb-3 text-2xl font-semibold">
           {data.name}-{" "}
           <span className="text-slate-600 text-xl">
@@ -72,10 +71,7 @@ const DashboardListing = async ({ params }) => {
             {data.type.includes("Furnished") ? "Furnished" : "Not Furnished"}
           </li>
         </ul>
-       <div className="flex gap-5 mt-8">
-        <button className="p-2 border-none bg-red-700 hover:bg-red-600 text-white rounded-lg">Delete</button>
-        <button className="p-2 border-none bg-green-700 hover:bg-green-600 text-white rounded-lg">Edit</button>
-       </div>
+       <DeleteAndEditButton id={id}/>
       </div>
     </div>
   );
