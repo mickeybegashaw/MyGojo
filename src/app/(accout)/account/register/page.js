@@ -10,7 +10,7 @@ const Register = async () => {
   }
   return (
     <div className="py-10 md:py-0 flex items-center flex-col-reverse md:flex-row-reverse ">
-      <div className=" w-11/12 h-96 md:w-full md:h-screen bg-white flex flex-col justify-center items-center">
+      <div className=" w-11/12 h-fit md:w-full md:h-screen bg-white flex flex-col justify-center items-center">
         <h1 className="text-xl md:text-2xl  text-slate-700 text-center">
           Create an Account
         </h1>
